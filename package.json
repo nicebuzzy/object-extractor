@@ -1,0 +1,30 @@
+{
+  "name": "@nicebuzzy/object-extractor",
+  "version": "1.0.0",
+  "description": "A simple function to extract values from an object using a list of paths.",
+  "keywords": [
+    "object",
+    "extract"
+  ],
+  "author": "nicebuzzy",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "browser": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicebuzzy/object-extractor.git"
+  },
+  "scripts": {
+    "test": "vitest",
+    "build": "rollup --config"
+  },
+  "files": [
+    "dist/*"
+  ],
+  "devDependencies": {
+    "rollup": "^4.32.0",
+    "vitest": "^2.1.8"
+  }
+}
