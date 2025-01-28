@@ -29,42 +29,40 @@ npm install @nicebuzzy/object-extractor
 ```js
 import extract from '@nicebuzzy/object-extractor'
 
-const source = {
-  settings: {
-    theme: 'dark',
-    notifications: {
-      email: true
-    }
+const user = {
+  theme: 'light'
+}
+
+const settings = {
+  theme: 'dark',
+  notifications: {
+    email: true
   }
 }
 
-const variables = [
-  { username: ['user.name'] },
-  { theme: ['settings.theme'] },
-  { notification: ['settings.notifications.sms', 'settings.notifications.email'] }
-]
+const variables = {
+  username: ['name', 'username'],
+  theme: ['theme'],
+  notification: ['notifications.sms', 'notifications.email']
+}
 
-const result = extract(source, variables)
+const result = extract(variables, user, settings)
 
-console.log(result) // { username: undefined, theme: 'dark', notification: true }
+console.log(result) // { theme: 'light', notification: true }
 ```
 
 ---
 
 ## API Reference
 
-### `extract(source, variables)`
+### `extract(variables, ...sources)`
 
 **Returns**: `Object`
 
-- **`source`**: `Object`  
-  The source object from which values will be extracted.
+- **`variables`**: `Object`  
+  An object where each key represents the name of the variable in the resulting object, and the value is an array of paths (as dot-separated strings) to search for the corresponding value in the `sources`.
 
-- **`variables`**: `Array<Object>`  
-  An array of objects, where each object defines a key and a list of paths to search for the corresponding value in the `source` object.  
-  - **`key`**: `string`  
-    The key to which the extracted value will be assigned in the resulting object.  
-  - **`value`**: `Array<string>`  
-    An array of paths (as dot-separated strings) to search for the value in the `source` object. The first valid path will be used to extract the value.
+- **`sources`**: `...Object`  
+  One or more source objects from which values will be extracted. The function searches for values in the order of the provided sources, using the first valid path found.
 
 ---

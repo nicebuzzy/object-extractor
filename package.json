@@ -1,6 +1,6 @@
 {
   "name": "@nicebuzzy/object-extractor",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A simple function to extract values from an object using a list of paths.",
   "keywords": [
     "object",

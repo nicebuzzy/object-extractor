@@ -1,14 +1,21 @@
-function extract(source = {}, variables = []) {
-  return variables.reduce((result, variable) => {
-    const [[key, paths]] = Object.entries(variable)
-    return {
-      ...result,
-      [key]: paths.map(path => getValueByPath(source, path)).find(value => value !== undefined)
+function extract(variables = {}, ...sources) {
+  const result = {}
+
+  for (const [key, paths] of Object.entries(variables)) {
+    for (const source of sources) {
+      const value = paths.map(path => getValueByPath(source, path)).find(value => value !== undefined)
+
+      if (value !== undefined) {
+        result[key] = value
+        break
+      }
     }
-  }, {})
+  }
+
+  return result
 }
 
-function getValueByPath(object = {}, path = '') {
+function getValueByPath(object = {}, path) {
   return path.split('.').reduce((acc, key) => acc && acc[key], object)
 }
 
