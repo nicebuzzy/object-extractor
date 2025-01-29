@@ -2,7 +2,7 @@
 
 ## Overview
 
-The `extract` function retrieves values from a source object using a list of paths. For each specified key, multiple paths can be provided, and the function returns the value from the first valid path found.
+The `extract` function retrieves values from one or more source objects using a list of paths. For each specified key, multiple paths can be provided, and the function returns the value from the first valid path found in the order of the provided sources. 
 
 ---
 
